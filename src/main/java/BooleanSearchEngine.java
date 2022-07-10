@@ -8,8 +8,8 @@ import java.util.*;
 
 public class BooleanSearchEngine implements SearchEngine {
     //???
-    private Map<String, Integer> freqs;
-    private TreeSet pageEntryList;//Объекты хранятся в отсортированном и возрастающем порядке
+    //    private Map<String, Integer> freqs;
+    //private TreeSet<PageEntry> pageEntryList;//Объекты хранятся в отсортированном и возрастающем порядке
     private Map<String, Set<PageEntry>> resultMap;
 
     public BooleanSearchEngine(File pdfsDir) throws IOException {
@@ -25,7 +25,7 @@ public class BooleanSearchEngine implements SearchEngine {
             int  pageCounter = doc.getNumberOfPages( );
             //Сканируя каждый пдф-файл вы перебираете его страницы
             for (int i = 1; i < pageCounter; i++) {
-                freqs = new HashMap<>( );
+                Map<String, Integer> freqs = new HashMap<>( );
                 //получить текст со страницы
                 String text = PdfTextExtractor.getTextFromPage(doc.getPage(i));
                 //разбить текст на слова (а они в этих документах разделены могут быть не только пробелами)
@@ -41,7 +41,7 @@ public class BooleanSearchEngine implements SearchEngine {
                     String mapEntryKey = mapEntry.getKey( );
                     int mapEntryValue = mapEntry.getValue( );
                     PageEntry pageExmp = new PageEntry(file.getName( ), i, mapEntryValue);
-                    pageEntryList = new TreeSet( );
+                    TreeSet<PageEntry> pageEntryList = new TreeSet( );
                     pageEntryList.add(pageExmp);
                     if (resultMap.isEmpty( )) { //добавляем, если множество пусто
                         resultMap.put(mapEntryKey, pageEntryList);
