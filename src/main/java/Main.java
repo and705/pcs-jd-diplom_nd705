@@ -16,7 +16,7 @@ import java.util.List;
 public class Main {
 
     final static private int port = 8989;
-    final static private String path = "pcs-jd-diplom_nd705/pdfs";
+    final static private String path = "pdfs";
     final static GsonBuilder builder = new GsonBuilder( );
 
     public static void main(String[] args) throws Exception {
